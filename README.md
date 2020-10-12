@@ -1,8 +1,11 @@
-[![Actions Status](https://github.com/karoletrych/vue-cron-editor/workflows/Node%20CI/badge.svg)](https://github.com/karoletrych/vue-cron-editor/actions)
+[![Actions Status](https://github.com/caehprogrammer/vue-cron-editor/workflows/Node%20CI/badge.svg)](https://github.com/caehprogrammer/vue-cron-editor/actions)
 
-# vue-cron-editor
+
+# vue-cron-editor-vuetify
 
 VueCronEditor is a component library built with Vue allowing for easier editing of cron expressions.
+
+CronEditor is a component library built with Vue and Vuetify-Vue allowing for easier editing of cron expressions. Inspired by https://github.com/karoletrych/vue-cron-editor
 
 # Demo
 
