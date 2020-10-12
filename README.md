@@ -3,15 +3,15 @@
 VueCronEditor is a component library built with Vue allowing for easier editing of cron expressions.
 
 # Demo
-https://karoletrych.github.io/vue-cron-editor/
+https://github.com/caehprogrammer/vue-cron-editor
 
 # Requirements
 - Vue ^2.0
 
 # Installation
-- vue-cron-editor-buefy 
+- vue-cron-editor-vuetify
 ```
-npm install vue-cron-editor-buefy --save
+npm install vue-cron-editor-vuetify --save
 ```
 
 # Usage
@@ -24,9 +24,9 @@ npm install vue-cron-editor-buefy --save
 </template>
 
 <script>
-import VueCronEditorBuefy from 'vue-cron-editor-buefy';
-// or include the vue-cron-editor-buefy.umd.js file and call: 
-// Vue.component("vue-cron-editor-buefy", window["vue-cron-editor-buefy"]);
+import VueCronEditorBuefy from 'vue-cron-editor-vuetify';
+// or include the vue-cron-editor-vuetify.umd.js file and call: 
+// Vue.component("vue-cron-editor-buefy", window["vue-cron-editor-vuetify"]);
 
 export default {
   name: 'App',
