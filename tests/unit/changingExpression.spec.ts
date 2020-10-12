@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import VueCronEditorBuefy from "../../src/buefy/VueCronEditorBuefy.vue";
+import VueCronEditorVuetify from "../../src/vuetify/VueCronEditorVuetify.vue";
 import Vue from "vue";
 
 function getMountedComponent(Component: any, propsData: any) {
@@ -10,7 +10,7 @@ function getMountedComponent(Component: any, propsData: any) {
 
 describe("changing expression updates data", () => {
     it("when changing to expression from different tab, data is updated", async () => {
-        let component = getMountedComponent(VueCronEditorBuefy, {
+        let component = getMountedComponent(VueCronEditorVuetify, {
             value: "*/43 * * * *"
         });
         component.setProps({ value: "0 0 * * 1,3,4" });

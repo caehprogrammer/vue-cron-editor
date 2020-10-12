@@ -15,6 +15,7 @@ import * as cronstrue from "cronstrue/i18n";
 import { createI18n, toCronstrueLocale } from "./i18n";
 
 import Vue from "vue";
+import { Locale } from "cronstrue/dist/i18n/locale";
 
 const initialData: Record<TabKey, TabUpdatedEvent> = {
     minutes: {
@@ -76,7 +77,7 @@ export default Vue.extend({
                     "weekly",
                     "monthly",
                     "advanced"
-                ]
+                ];
             }
         },
         preserveStateOnSwitchToAdvanced: { type: Boolean, default: false },
@@ -94,7 +95,6 @@ export default Vue.extend({
     computed: {
         explanation(): string {
             if (!this.innerValue) return "";
-
             const cronstrueLocale = toCronstrueLocale(this.locale);
             return (cronstrue as any).toString(this.innerValue, {
                 locale: cronstrueLocale
@@ -104,6 +104,13 @@ export default Vue.extend({
     methods: {
         _$t(key: string) {
             return this.i18n![key];
+        },
+        _toTextExpression(value: string, localeExpression: string): string {
+            if (!value) return "";
+            const cronstrueLocale = toCronstrueLocale(localeExpression);
+            return (cronstrue as any).toString(value, {
+                locale: cronstrueLocale
+            });
         },
         __loadDataFromExpression() {
             const tabData = parseExpression(this.value);
@@ -116,6 +123,7 @@ export default Vue.extend({
                 return;
             }
             this.$data.editorData = { ...tabData };
+
             this.currentTab = tabData.type;
         },
         __updateCronExpression(event: TabUpdatedEvent) {

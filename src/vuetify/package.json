@@ -1,0 +1,39 @@
+{
+    "name": "vue-cron-editor-vuetify",
+    "license": "MIT",
+    "version": "0.2.14",
+    "main": "dist/vue-cron-editor-vuetify.umd.js",
+    "module": "dist/vue-cron-editor-vuetify.esm.js",
+    "unpkg": "dist/vue-cron-editor-vuetify.min.js",
+    "browser": {
+        "./sfc": "src/VueCronEditorVuetify.vue"
+    },
+    "scripts": {
+        "build": "vue-cli-service build --target lib --name vue-cron-editor-vuetify VueCronEditorVuetify.vue",
+        "release": "standard-version",
+        "release:full": "npm install && npm run build && npm run release"
+    },
+    "dependencies": {
+        "core-js": "^3.3.2",
+        "cronstrue": "^1.94.0",
+        "vue": "^2.6.10"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^4.3.1",
+        "@vue/cli-plugin-typescript": "^4.3.1",
+        "@vue/cli-service": "^4.3.1",
+        "node-sass": "^4.14.1",
+        "sass": "^1.26.5",
+        "sass-loader": "^8.0.0",
+        "ts-loader": "^6.2.2",
+        "typescript": "^3.9.2",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/karoletrych/vue-cron-editor.git"
+    },
+    "files": [
+        "dist"
+    ]
+}

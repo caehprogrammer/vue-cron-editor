@@ -7,47 +7,21 @@
                 v-model="selectedLocale"
                 dense
             ></v-select>
-            <v-row fluid dense>
-                <v-checkbox
-                    label="minutes"
-                    value="minutes"
-                    v-model="visibleTabs"
-                />
-                <v-checkbox
-                    label="hourly"
-                    value="hourly"
-                    v-model="visibleTabs"
-                />
-                <v-checkbox label="daily" value="daily" v-model="visibleTabs" />
-                <v-checkbox
-                    label="weekly"
-                    value="weekly"
-                    v-model="visibleTabs"
-                />
-                <v-checkbox
-                    label="monthly"
-                    value="monthly"
-                    v-model="visibleTabs"
-                />
-                <v-checkbox
-                    label="advanced"
-                    value="advanced"
-                    v-model="visibleTabs"
-                />
-            </v-row>
             <section>
                 <h2>Basic</h2>
                 <section>
-                    <VueCronEditorBuefy
-                        :visibleTabs="visibleTabs"
+                    <VueCronEditorVuetify
+                        :visibleTabs="visibleTabs1"
                         :preserveStateOnSwitchToAdvanced="true"
                         :locale="selectedLocale"
                         v-model="sample1CronExpression"
-                    ></VueCronEditorBuefy>
+                    />
                 </section>
-                {{ sample1CronExpression }}
+                <div>
+                    {{ sample1CronExpression }} >>
+                    {{ toTextExpression(sample1CronExpression) }}
+                </div>
             </section>
-
             <section>
                 <h2>Grid editing</h2>
                 <v-data-table
@@ -82,15 +56,30 @@
                                     <v-card-text>
                                         <v-container>
                                             <section>
-                                                <h3>vue-cron-editor-buefy</h3>
-                                                <VueCronEditorBuefy
+                                                <h3>vue-cron-editor-vuetify</h3>
+                                                <VueCronEditorVuetify
+                                                    :visibleTabs="visibleTabs1"
+                                                    :preserveStateOnSwitchToAdvanced="
+                                                        true
+                                                    "
+                                                    :locale="selectedLocale"
                                                     v-model="
                                                         editedItem.expression
                                                     "
-                                                ></VueCronEditorBuefy>
+                                                ></VueCronEditorVuetify>
                                             </section>
-                                            cron expression:
-                                            {{ editedItem.expression }}
+                                            <div>
+                                                Cron expression:
+                                                {{ editedItem.expression }}
+                                            </div>
+                                            <div>
+                                                Expression:
+                                                {{
+                                                    toTextExpression(
+                                                        editedItem.expression
+                                                    )
+                                                }}
+                                            </div>
                                         </v-container>
                                     </v-card-text>
 
@@ -113,7 +102,10 @@
                             </v-dialog>
                         </v-toolbar>
                     </template>
-                    <template #item.action="{ item }">
+                    <template #item.expression="{ item }">
+                        {{ toTextExpression(item.expression) }}
+                    </template>
+                    <template #item.action="{  item }">
                         <v-icon small class="mr-2" @click="editItem(item)"
                             >edit</v-icon
                         >
@@ -126,15 +118,20 @@
 </template>
 
 <script>
-import VueCronEditorBuefy from "./buefy/VueCronEditorBuefy.vue";
-import { defaultLocales } from "./buefy/core/i18n";
+import VueCronEditorVuetify from "@/vuetify/VueCronEditorVuetify.vue";
+import vueCronEditorMixin from "@/vuetify/core/vueCronEditorMixin";
+import { defaultLocales } from "@/vuetify/core/i18n";
 
 export default {
     name: "App",
+    mixins: [vueCronEditorMixin],
     components: {
-        VueCronEditorBuefy
+        VueCronEditorVuetify
     },
     methods: {
+        toTextExpression(cronExpression) {
+            return this._toTextExpression(cronExpression, this.selectedLocale);
+        },
         editItem(item) {
             this.editedIndex = this.expressions.indexOf(item);
             this.editedItem = Object.assign({}, item);
@@ -177,8 +174,8 @@ export default {
         dialog: false,
         editedIndex: -1,
         locales: Object.keys(defaultLocales),
-        selectedLocale: "en",
-        visibleTabs: [
+        selectedLocale: "es",
+        visibleTabs1: [
             "minutes",
             "hourly",
             "daily",
